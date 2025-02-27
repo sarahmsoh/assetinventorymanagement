@@ -20,14 +20,14 @@ import SystemConfig from './admin/pages/SystemConfig';
 import Reports from './admin/pages/Reports';
 import dashboard from './manager/Dashboard/DashboardLayout';
 import allocationLogic from './manager/DataLogic/allocationLogic';
-// import ApprovedRequestPage from './src/manager/RequestManagement/ApproveRequestModal';
-// import RejectedRequestPage from './src/manager/RequestManagement/RejectRequestModal';
-// import AllocationForm from './src/manager/AssetAllocation/AllocationForm';
-// import AssetManagement from './src/manager/AssetManagement/AssetManagent';
-// import AssertAllocationTable from './src/manager/AssetAllocation/AssetAllocationTable';
-// import PendingRequestsTable from './src/manager/RequestManagement/ApproveRequestModal';
-// import CompletedRequestTable from './src/manager/RequestManagement/CompletedRequestsTable';
-// import Header from './src/admin/components/Header';
+import ApprovedRequestPage from './src/manager/RequestManagement/ApproveRequestModal';
+import RejectedRequestPage from './src/manager/RequestManagement/RejectRequestModal';
+import AllocationForm from './src/manager/AssetAllocation/AllocationForm';
+import AssetManagement from './src/manager/AssetManagement/AssetManagent';
+import AssertAllocationTable from './src/manager/AssetAllocation/AssetAllocationTable';
+import PendingRequestsTable from './src/manager/RequestManagement/ApproveRequestModal';
+import CompletedRequestTable from './src/manager/RequestManagement/CompletedRequestsTable';
+import Header from './src/admin/components/Header';
 import { useState } from 'react';
 
 
