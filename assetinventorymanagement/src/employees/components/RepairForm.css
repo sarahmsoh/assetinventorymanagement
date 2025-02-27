@@ -1,0 +1,152 @@
+/* Global styles */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f7fa;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: #333;
+}
+
+/* Heading Style */
+h2 {
+  text-align: center;
+  font-size: 26px;
+  color: hsl(187, 87%, 46%);
+  margin-bottom: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Employee Repair Form Styles */
+.repair-form-container {
+  width: 100%;
+  max-width: 520px;
+  margin: 20px auto;
+  padding: 35px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  font-size: 16px;
+}
+
+/* Hover effect for form container */
+.repair-form-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Form layout */
+.repair-form {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/* Form groups */
+.form-group {
+  margin-bottom: 20px;
+}
+
+/* Label Styling */
+label {
+  font-weight: 600;
+  margin-bottom: 8px;
+  display: block;
+  color: #555;
+}
+
+/* Input Fields Styling */
+input[type="text"],
+input[type="number"],
+textarea,
+select {
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  background-color: #fafafa;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Focus Effects for Inputs */
+input[type="text"]:focus,
+input[type="number"]:focus,
+textarea:focus,
+select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+  background-color: #fff;
+}
+
+/* Textarea Specific Styling */
+textarea {
+  resize: vertical;
+  min-height: 10px;
+}
+
+/* Submit Button */
+button.submit-btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 15px;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button.submit-btn:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+button.submit-btn:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .repair-form-container {
+    padding: 25px;
+    width: 90%;
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+
+  button.submit-btn {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .repair-form-container {
+    padding: 20px;
+    width: 90%;
+  }
+
+  input[type="text"],
+  input[type="number"],
+  textarea,
+  select {
+    padding: 12px;
+  }
+
+  button.submit-btn {
+    font-size: 14px;
+    padding: 12px;
+  }
+}
+
