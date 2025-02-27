@@ -38,12 +38,12 @@ const App = () => {
   return (
 
     <Router>
-      {/* <Home /> */}
-      {/* <Navbar />
-      <Sidebar /> */}
+       <Home />
+       {/* <Navbar />
+       <Sidebar /> */}
 
       <div className="main-content" style={{ marginLeft: '250px', padding: '20px' }}>
-        <Routes> 
+        <Routes>
           {/* Default Route */}
           <Route path="/" element={LoggedIn ? <EmployeeDashboard /> : <Navigate to="/login" />} />
 
