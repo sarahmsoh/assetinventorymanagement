@@ -1,36 +1,49 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+// import React from 'react';
+// import { NavLink } from 'react-router-dom';
+// import { Navbar, Nav } from 'react-bootstrap';
+// import { FaTachometerAlt, FaUsers, FaBox, FaFileAlt, FaHistory, FaCog } from 'react-icons/fa';
 
-const Navbar = () => {
-  return (
-    <nav className="bg-light py-2">
-      <div className="container-fluid text-center">
-        <ul className="list-inline mb-0">
-          <li className="list-inline-item mx-2">
-            <NavLink className="text-decoration-none" activeClassName="fw-bold" to="/admin/dashboard">Dashboard</NavLink>
-          </li>
-          <li className="list-inline-item mx-2">
-            <NavLink className="text-decoration-none" activeClassName="fw-bold" to="/admin/users">Users</NavLink>
-          </li>
-          <li className="list-inline-item mx-2">
-            <NavLink className="text-decoration-none" activeClassName="fw-bold" to="/admin/assets">Assets</NavLink>
-          </li>
-          <li className="list-inline-item mx-2">
-            <NavLink className="text-decoration-none" activeClassName="fw-bold" to="/admin/requests">Requests</NavLink>
-          </li>
-          <li className="list-inline-item mx-2">
-            <NavLink className="text-decoration-none" activeClassName="fw-bold" to="/admin/audit-logs">Audit Logs</NavLink>
-          </li>
-          <li className="list-inline-item mx-2">
-            <NavLink className="text-decoration-none" activeClassName="fw-bold" to="/admin/system-config">System Config</NavLink>
-          </li>
-          <li className="list-inline-item mx-2">
-            <NavLink className="text-decoration-none" activeClassName="fw-bold" to="/admin/reports">Reports</NavLink>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  );
-};
 
-export default Navbar;
+// const Navbar = () => {
+//   return (
+//     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+//       <ul className="navbar-nav">
+//         <li className="nav-item">
+//           <NavLink 
+//             to="/admin/dashboard" 
+//             className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")}
+//           >
+//             Dashboard
+//           </NavLink>
+//         </li>
+//         <li className="nav-item">
+//           <NavLink 
+//             to="/admin/users" 
+//             className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")}
+//           >
+//             Users
+//           </NavLink>
+//         </li>
+//         <li className="nav-item">
+//           <NavLink 
+//             to="/admin/assets" 
+//             className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")}
+//           >
+//             Assets
+//           </NavLink>
+//         </li>
+//         <li className="nav-item">
+//           <NavLink 
+//             to="/admin/requests" 
+//             className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")}
+//           >
+//             Requests
+//           </NavLink>
+//         </li>
+//         {/* Add more nav items as needed */}
+//       </ul>
+//     </nav>
+//   );
+// };
+
+// export default Navbar;

@@ -1,17 +1,19 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Table, Button } from 'react-bootstrap';
-import AssetForm from '../components/AssetForm';
+import { fetchAssets } from '../../redux/assetsSlice';
 
 const AdminAssets = () => {
+  const dispatch = useDispatch();
   const assets = useSelector(state => state.assets.items || []);
+
+  useEffect(() => {
+    dispatch(fetchAssets());
+  }, [dispatch]);
 
   return (
     <div className="container my-4">
-      <h1>Manage Assets</h1>
-      <p>Add new assets, update existing assets, and assign assets to departments.</p>
-      <AssetForm />
-      <h3 className="mt-4">Asset List</h3>
+      <h1>List Assets</h1>
       <Table striped hover>
         <thead>
           <tr>
