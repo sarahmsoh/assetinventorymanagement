@@ -1,16 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { logout } from '../../../redux/authSlice';
+import { logout } from '../redux/authSlice';
 import { useNavigate } from 'react-router-dom';
-import {
-  FaTachometerAlt,
-  FaUsers,
-  FaCube,
-  FaEnvelope,
-  FaClipboardList,
-  FaCogs,
-  FaChartBar
+import { 
+  FaTachometerAlt, 
+  FaUsers, 
+  FaCube, 
+  FaEnvelope, 
+  FaClipboardList, 
+  FaCogs, 
+  FaChartBar 
 } from 'react-icons/fa';
 import './Sidebar.css';
 

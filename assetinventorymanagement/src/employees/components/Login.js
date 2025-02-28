@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './Login.css';
 import axios from 'axios';
 
-function Login({ setLoggedIn }) {
+function Login() {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('');
@@ -22,20 +22,20 @@ function Login({ setLoggedIn }) {
     }
 
     axios
-      .post('/api/login', { name, password, role }) // Adjust API endpoint as needed
+      .post('/assetinventorymanagement/login', { name, password, role }, { withCredentials: true })
       .then((response) => {
         console.log(response.data);
         localStorage.setItem('isLoggedIn', 'true'); // Save login status
 
-        // Redirect user based on role
+        // Redirect user based on role:
         if (role === '1') {
-          navigate('/admin-dashboard');
+          navigate('/admin');
         } else if (role === '2') {
-          navigate('/manager-dashboard');
+          navigate('/manager');
         } else if (role === '3') {
-          navigate('/employee-dashboard');
+          navigate('/employee');
         } else {
-          navigate('/home'); // Default fallback
+          navigate('/'); // Fallback route
         }
       })
       .catch((error) => {
@@ -46,11 +46,16 @@ function Login({ setLoggedIn }) {
 
   return (
     <div className="login">
-      <p>Hello User <br />Please log in first to gain access.</p>
+      <p>
+        Hello User <br />
+        Please log in first to gain access.
+      </p>
       <h2>Login</h2>
       <form onSubmit={handleSubmit} className="loginForm">
         <div className="formGroup">
-          <label htmlFor="username" className="label">Name:</label>
+          <label htmlFor="username" className="label">
+            Name:
+          </label>
           <input
             type="text"
             id="username"
@@ -62,7 +67,9 @@ function Login({ setLoggedIn }) {
         </div>
 
         <div className="formGroup">
-          <label htmlFor="password" className="label">Password:</label>
+          <label htmlFor="password" className="label">
+            Password:
+          </label>
           <input
             type="password"
             id="password"
@@ -73,9 +80,10 @@ function Login({ setLoggedIn }) {
           />
         </div>
 
-        {/* Role Selection */}
         <div className="formGroup">
-          <label htmlFor="role" className="label">Select Role:</label>
+          <label htmlFor="role" className="label">
+            Select Role:
+          </label>
           <select
             className="form-select"
             id="role"
@@ -90,7 +98,9 @@ function Login({ setLoggedIn }) {
           </select>
         </div>
 
-        <button type="submit" className="loginButton" onClick={() => setLoggedIn(true)}>Login</button>
+        <button type="submit" className="loginButton">
+          Login
+        </button>
       </form>
     </div>
   );

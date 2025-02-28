@@ -1,10 +1,12 @@
-// frontend/src/components/AssetForm.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { addAsset } from '../redux/assetsSlice';
+import axios from 'axios';
 
 const AssetForm = () => {
   const dispatch = useDispatch();
+  const [categories, setCategories] = useState([]);
+  const [departments, setDepartments] = useState([]);
   const [formData, setFormData] = useState({
     name: '',
     category: '',
@@ -13,6 +15,16 @@ const AssetForm = () => {
     image_url: '',
   });
   const [error, setError] = useState(null);
+
+  useEffect(() => {
+    axios.get('/assetinventorymanagement/categories', { withCredentials: true })
+      .then(response => setCategories(response.data))
+      .catch(error => console.error('Error fetching categories:', error));
+
+    axios.get('/assetinventorymanagement/departments', { withCredentials: true })
+      .then(response => setDepartments(response.data))
+      .catch(error => console.error('Error fetching departments:', error));
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -60,10 +72,9 @@ const AssetForm = () => {
           required
         >
           <option value="">Select Category</option>
-          <option value="IT Equipment">IT Equipment</option>
-          <option value="Furniture">Furniture</option>
-          <option value="Office Supplies">Office Supplies</option>
-          <option value="Other">Other</option>
+          {categories.map((cat, idx) => (
+            <option key={idx} value={cat}>{cat}</option>
+          ))}
         </select>
       </div>
       <div className="mb-3">
@@ -76,25 +87,9 @@ const AssetForm = () => {
           required
         >
           <option value="">Select Department</option>
-          <option value="HR">HR</option>
-          <option value="IT">IT</option>
-          <option value="Finance">Finance</option>
-          <option value="Procurement">Procurement</option>
-          <option value="Operations">Operations</option>
-        </select>
-      </div>
-      <div className="mb-3">
-        <label htmlFor="urgency" className="form-label">Urgency Level</label>
-        <select
-          id="urgency"
-          className="form-select"
-          value={formData.urgency}
-          onChange={(e) => setFormData({ ...formData, urgency: e.target.value })}
-          required
-        >
-          <option value="Low">Low</option>
-          <option value="Medium">Medium</option>
-          <option value="High">High</option>
+          {departments.map((dep, idx) => (
+            <option key={idx} value={dep}>{dep}</option>
+          ))}
         </select>
       </div>
       <div className="mb-3">
