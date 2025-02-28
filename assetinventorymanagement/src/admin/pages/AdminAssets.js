@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Table, Button } from 'react-bootstrap';
-import { fetchAssets } from '../../redux/assetsSlice';
+import { fetchAssets } from '../redux/assetsSlice';
 
 const AdminAssets = () => {
   const dispatch = useDispatch();

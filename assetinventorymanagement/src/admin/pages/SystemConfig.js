@@ -5,7 +5,7 @@ import axios from 'axios';
 const SystemConfig = () => {
   const [categories, setCategories] = useState([]);
   const [departments, setDepartments] = useState([]);
-  const [urgencyLevels] = useState(['Low', 'Medium', 'High']); // static list
+  const [urgencyLevels] = useState(['Low', 'Medium', 'High']); // Static list
   const [newCategory, setNewCategory] = useState('');
   const [newDepartment, setNewDepartment] = useState('');
 
@@ -30,7 +30,7 @@ const SystemConfig = () => {
       });
   }, []);
 
-  // Add new category
+  // Add new category via backend
   const handleAddCategory = (e) => {
     e.preventDefault();
     if (newCategory.trim()) {
@@ -45,13 +45,13 @@ const SystemConfig = () => {
           setNewCategory('');
         })
         .catch((error) => {
-          console.error('Error adding category:', error);
+          console.error(error);
           alert(error.response?.data?.message || 'Failed to add category');
         });
     }
   };
 
-  // Add new department
+  // Add new department via backend
   const handleAddDepartment = (e) => {
     e.preventDefault();
     if (newDepartment.trim()) {
@@ -66,7 +66,7 @@ const SystemConfig = () => {
           setNewDepartment('');
         })
         .catch((error) => {
-          console.error('Error adding department:', error);
+          console.error(error);
           alert(error.response?.data?.message || 'Failed to add department');
         });
     }
@@ -81,7 +81,6 @@ const SystemConfig = () => {
       <p className="text-center mb-4">
         Configure asset categories, departments, urgency levels, and other system settings.
       </p>
-
       <Row className="mb-4">
         {/* Asset Categories Card */}
         <Col md={6} className="mb-4">
@@ -92,9 +91,7 @@ const SystemConfig = () => {
             <Card.Body>
               <ul className="list-unstyled">
                 {categories.map((cat, index) => (
-                  <li key={index} className="mb-2">
-                    {cat}
-                  </li>
+                  <li key={index} className="mb-2">{cat}</li>
                 ))}
               </ul>
               <Form onSubmit={handleAddCategory}>
@@ -113,7 +110,6 @@ const SystemConfig = () => {
             </Card.Body>
           </Card>
         </Col>
-
         {/* Departments Card */}
         <Col md={6} className="mb-4">
           <Card className="shadow-sm h-100">
@@ -123,9 +119,7 @@ const SystemConfig = () => {
             <Card.Body>
               <ul className="list-unstyled">
                 {departments.map((dep, index) => (
-                  <li key={index} className="mb-2">
-                    {dep}
-                  </li>
+                  <li key={index} className="mb-2">{dep}</li>
                 ))}
               </ul>
               <Form onSubmit={handleAddDepartment}>
