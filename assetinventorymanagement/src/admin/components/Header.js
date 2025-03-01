@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { logout } from '../redux/authSlice';
 import { useNavigate } from 'react-router-dom';
 import Navbar from './Navbar';
-import { FaSearch, FaChevronDown, FaChevronUp } from 'react-icons/fa';
+import { FaSearch } from 'react-icons/fa';
 import './Header.css';
 
 const Header = () => {
@@ -17,6 +17,7 @@ const Header = () => {
     navigate('/login');
   };
 
+  // eslint-disable-next-line no-unused-vars
   const toggleDashboard = () => {
     setShowDashboard(!showDashboard);
   };

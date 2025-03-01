@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'
 import Home from '../src/Home';
 import EmployeeDashboard from './employees/components/EmployeeDashboard';
 import Requests from './employees/components/Requests';
@@ -23,6 +23,7 @@ import AssertAllocationTable from './manager/AssetAllocation/AssetAllocationTabl
 import PendingRequestsTable from './manager/RequestManagement/ApproveRequestModal';
 import CompletedRequestTable from './manager/RequestManagement/CompletedRequestsTable';
 import Header from './admin/components/Header';
+
 
 import './App.css';
 
@@ -53,6 +54,7 @@ const App = () => {
         <Route path="/employee-dashboard" element={loggedIn && userRole === "employee" ? <EmployeeDashboard /> : <Navigate to="/employee-dashboard" />} />
         <Route path="/admin-dashboard" element={loggedIn && userRole === "admin" ? <AdminDashboard /> : <Navigate to="/admin-dashboard" />} />
         <Route path="/manager/dashboard" element={loggedIn && userRole === "manager" ? <Dashboard /> : <Navigate to="/manager/dashboard" />} />
+
 
         {/* dashboards */}
         {/* <Route path="/employee-dashboard" element={<EmployeeDashboard />} />
