@@ -1,12 +1,11 @@
 /* Global styles */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f4f7fa;
+  background-color: hsl(210, 72%, 45%);
   margin: 0;
   padding: 0;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 100vw;
   height: 100vh;
   color: #333;
 }
