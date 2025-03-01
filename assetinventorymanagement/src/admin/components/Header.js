@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { logout } from '../../../redux/authSlice';
+import { logout } from '../redux/authSlice';
 import { useNavigate } from 'react-router-dom';
 import Navbar from './Navbar';
 import { FaSearch, FaChevronDown, FaChevronUp } from 'react-icons/fa';
