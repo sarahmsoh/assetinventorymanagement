@@ -8,6 +8,7 @@ function Signup() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [role, setRole] = useState('employee');
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -29,7 +30,7 @@ function Signup() {
     setLoading(true);
 
     try {
-      const response = await axios.post(`${import.meta.env.VITE_API_URL}/signup`, { name, email, password });
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/signup`, { name, email, password, role });
       console.log(response.data);
       alert("Signup successful! Redirecting...");
       navigate('/dashboard');
@@ -45,82 +46,51 @@ function Signup() {
     <div className="signup-container">
       <h1>Signup</h1>
       <form onSubmit={handleSubmit}>
-        {/* Name Field */}
         <div className="form-group">
           <label>Name:</label>
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-            autoComplete="name"
-          />
+          <input type="text" value={name} onChange={(e) => setName(e.target.value)} required autoComplete="name" />
         </div>
 
-        {/* Email Field */}
         <div className="form-group">
           <label>Email:</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            autoComplete="email"
-          />
+          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required autoComplete="email" />
         </div>
 
-        {/* Password Field */}
+        <div className="form-group">
+          <label>Role:</label>
+          <select value={role} onChange={(e) => setRole(e.target.value)} required>
+            <option value="admin">Admin</option>
+            <option value="manager">Manager</option>
+            <option value="employee">Employee</option>
+          </select>
+        </div>
+
         <div className="form-group relative">
           <label>Password:</label>
           <div className="password-container">
-            <input
-              type={showPassword ? 'text' : 'password'}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              autoComplete="new-password"
-              minLength="6"
-            />
-            <button
-              type="button"
-              className="password-toggle"
-              onClick={() => setShowPassword(!showPassword)}
-            >
+            <button type="button" className="password-toggle" onClick={() => setShowPassword(!showPassword)}>
               {showPassword ? '🙈' : '👁'}
             </button>
+            <input type={showPassword ? 'text' : 'password'} value={password} onChange={(e) => setPassword(e.target.value)} required autoComplete="new-password" minLength="6" />
           </div>
         </div>
 
-        {/* Confirm Password Field */}
         <div className="form-group relative">
           <label>Confirm Password:</label>
           <div className="password-container">
-            <input
-              type={showConfirmPassword ? 'text' : 'password'}
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              required
-              autoComplete="new-password"
-            />
-            <button
-              type="button"
-              className="password-toggle"
-              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-            >
+            <button type="button" className="password-toggle" onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
               {showConfirmPassword ? '🙈' : '👁'}
             </button>
+            <input type={showConfirmPassword ? 'text' : 'password'} value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required autoComplete="new-password" />
           </div>
         </div>
 
-        {/* Signup Button */}
         <button type="submit" disabled={loading}>
           {loading ? 'Signing Up...' : 'Signup'}
         </button>
       </form>
 
-      <p>
-        Already have an account? <Link to="/login">Login</Link>
-      </p>
+      <p>Already have an account? <Link to="/login">Login</Link></p>
     </div>
   );
 }

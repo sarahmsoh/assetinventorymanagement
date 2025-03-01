@@ -22,6 +22,7 @@ import AssetManagement from './manager/AssetManagement/AssetManagent';
 import AssertAllocationTable from './manager/AssetAllocation/AssetAllocationTable';
 import PendingRequestsTable from './manager/RequestManagement/ApproveRequestModal';
 import CompletedRequestTable from './manager/RequestManagement/CompletedRequestsTable';
+import sidebar from './employees/components/Sidebar';
 import Header from './admin/components/Header';
 
 
@@ -62,6 +63,7 @@ const App = () => {
         <Route path="/manager/dashboard" element={<Dashboard />} /> */}
 
         {/* Forms */}
+        <Route path="/sidebar" element={<sidebar />} />
         <Route path="/requestform" element={<RequestForm />} />
         <Route path="/repairform" element={<RepairForm />} />
         <Route path="/assetallocation" element={<AllocationForm />} />

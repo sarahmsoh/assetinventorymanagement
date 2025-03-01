@@ -3,40 +3,29 @@ import { useNavigate } from 'react-router-dom';
 import './Login.css';
 import axios from 'axios';
 
+
 function Login({ setLoggedIn }) {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
-  const [role, setRole] = useState('');
   const navigate = useNavigate();
 
   const handleUsernameChange = (e) => setName(e.target.value);
   const handlePasswordChange = (e) => setPassword(e.target.value);
-  const handleRoleChange = (e) => setRole(e.target.value);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!name || !password || !role) {
-      alert('Please enter your username, password, and select a role');
+    if (!name || !password) {
+      alert('Please enter your username and password');
       return;
     }
 
     axios
-      .post('/api/login', { name, password, role }) // Adjust API endpoint as needed
+      .post('/api/login', { name, password }) // Adjust API endpoint as needed
       .then((response) => {
         console.log(response.data);
         localStorage.setItem('isLoggedIn', 'true'); // Save login status
-
-        // Redirect user based on role
-        if (role === '1') {
-          navigate('/admin-dashboard');
-        } else if (role === '2') {
-          navigate('/manager-dashboard');
-        } else if (role === '3') {
-          navigate('/employee-dashboard');
-        } else {
-          navigate('/home'); // Default fallback
-        }
+        navigate('/dashboard'); // Redirect to the general dashboard
       })
       .catch((error) => {
         console.error(error.response?.data);
@@ -71,23 +60,6 @@ function Login({ setLoggedIn }) {
             className="loginInput"
             required
           />
-        </div>
-
-        {/* Role Selection */}
-        <div className="formGroup">
-          <label htmlFor="role" className="label">Select Role:</label>
-          <select
-            className="form-select"
-            id="role"
-            value={role}
-            onChange={handleRoleChange}
-            required
-          >
-            <option value="">Select Role</option>
-            <option value="1">Admin</option>
-            <option value="2">Manager</option>
-            <option value="3">Employee</option>
-          </select>
         </div>
 
         <button type="submit" className="loginButton" onClick={() => setLoggedIn(true)}>Login</button>
