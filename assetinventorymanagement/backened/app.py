@@ -1,3 +1,4 @@
+import os
 from flask import Flask, request, jsonify
 from flask_login import LoginManager, login_user, logout_user, current_user, login_required
 from functools import wraps
@@ -7,7 +8,7 @@ from datetime import datetime, timedelta
 from flask_cors import CORS
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://myuser1:AAA@localhost/mydatabase1'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URI')
 app.config['SECRET_KEY'] = 'your_secure_secret_key'
 
 # Enable CORS (with credentials) for cross-origin requests.
@@ -38,12 +39,8 @@ def role_required(*roles):
         return decorated_function
     return wrapper
 
-# ----------------------------
 # Serialization Functions
-# ----------------------------
-
 def user_to_dict(user):
-    # Assumes each User has an associated Employee (if created).
     employee = user.employee if hasattr(user, 'employee') else None
     department_name = employee.department.name if employee and employee.department else None
     return {
@@ -54,6 +51,7 @@ def user_to_dict(user):
         "department": department_name,
         "employee_id": employee.user_id if employee else None
     }
+
 
 def asset_to_dict(asset):
     return {
@@ -93,7 +91,7 @@ def login():
     data = request.get_json()
     name = data.get('name')
     password = data.get('password')
-    numeric_role = data.get('role')  # Expected: "1" (Admin), "2" (Manager), "3" (Employee)
+    numeric_role = data.get('role')  # "1" (Admin), "2" (Manager), "3" (Employee)
 
     role_map = {
         "1": "Admin",
@@ -107,7 +105,13 @@ def login():
     user = User.query.filter_by(name=name).first()
     if user and user.check_password(password) and user.role == mapped_role:
         login_user(user)
-        return jsonify({"message": "Logged in successfully", "role": numeric_role}), 200
+        return jsonify({
+            "message": "Logged in successfully",
+            "user": {
+                "name": user.name,
+                "role": mapped_role  # Returns "Admin" instead of "1"
+            }
+        }), 200
     else:
         return jsonify({"message": "Invalid credentials or role"}), 401
 
@@ -331,6 +335,29 @@ def add_department():
 def get_activity_log():
     # Dummy data; replace with real activity logs.
     return jsonify([]), 200
+
+@app.route('/assets/allocated', methods=['GET'])
+@login_required
+@role_required('Employee')
+def get_allocated_assets():
+    assets = Asset.query.join(Employee).filter(Employee.user_id == current_user.id).all()
+    return jsonify([asset_to_dict(a) for a in assets]), 200
+
+def asset_to_dict(asset):
+    return {
+        "id": asset.id,
+        "name": asset.name,
+        "category": asset.category.name if asset.category else None,
+        "status": asset.status,
+        "quantity": asset.quantity,
+        "image_url": asset.image_url,
+        "cost": asset.cost,
+        "purchaseDate": asset.purchase_date.isoformat(),
+        "allocationDate": asset.allocation_date.isoformat() if asset.allocation_date else None,
+        "assignedTo": asset.employee.user_id if asset.employee and hasattr(asset.employee, 'user_id') else None,
+        "warrantyExpiry": getattr(asset, 'warrantyExpiry', None)
+    }
+
 
 @app.route('/assetinventorymanagement/alerts', methods=['GET'])
 @login_required

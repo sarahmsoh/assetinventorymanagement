@@ -1,5 +1,3 @@
-# seed.py
-
 from app import app
 from models import db, User, Department, Employee, Category, Asset, Request, Allocation
 from flask_bcrypt import Bcrypt
@@ -48,8 +46,8 @@ def seed_data():
         # Create Users and Employee Records
         # ----------------------------
 
-        # Create Admin User
-        admin_user = User.query.filter_by(name="AdminUser").first()
+        # **Admin User**
+        admin_user = User.query.filter_by(email="ian@gmail.com").first()
         if not admin_user:
             admin_user = User(name="Ian", email="ian@gmail.com", role="Admin")
             admin_user.set_password("Ian1")
@@ -62,15 +60,15 @@ def seed_data():
         else:
             print("Admin user already exists.")
 
-        # Create multiple Managers
+        # **Managers**
         managers_data = [
-            {"name": "ManagerOne", "email": "manager1@example.com", "password": "manager1", "department": "Finance"},
-            {"name": "ManagerTwo", "email": "manager2@example.com", "password": "manager2", "department": "IT"},
-            {"name": "ManagerThree", "email": "manager3@example.com", "password": "manager3", "department": "Sales"}
+            {"name": "Kamal", "email": "manager1@example.com", "password": "Kamal123", "department": "Finance"},
+            {"name": "King", "email": "manager2@example.com", "password": "King123", "department": "IT"},
+            {"name": "Sharon", "email": "manager3@example.com", "password": "Sharon123", "department": "Sales"}
         ]
         managers = []
         for m in managers_data:
-            user = User.query.filter_by(name=m["name"]).first()
+            user = User.query.filter_by(email=m["email"]).first()
             if not user:
                 user = User(name=m["name"], email=m["email"], role="Manager")
                 user.set_password(m["password"])
@@ -85,7 +83,7 @@ def seed_data():
                 managers.append(user)
                 print(f"Manager {m['name']} already exists.")
 
-        # Create multiple Employees
+        # **Employees**
         employee_data = [
             {"name": "Alice", "email": "alice@example.com", "password": "alice123", "department": "IT"},
             {"name": "Bob", "email": "bob@example.com", "password": "bob123", "department": "HR"},
@@ -104,7 +102,7 @@ def seed_data():
         ]
         employees = []
         for emp in employee_data:
-            user = User.query.filter_by(name=emp["name"]).first()
+            user = User.query.filter_by(email=emp["email"]).first()
             if not user:
                 user = User(name=emp["name"], email=emp["email"], role="Employee")
                 user.set_password(emp["password"])
@@ -158,7 +156,29 @@ def seed_data():
                 assets_created[a["name"]] = asset
                 print(f"Asset '{a['name']}' already exists.")
 
-        # Allocate some assets to employees (simulate allocated assets)
+        # ----------------------------
+        # Create a Dummy Asset for New Asset Requests
+        # ----------------------------
+        new_asset_placeholder = Asset.query.filter_by(name="New Asset Placeholder").first()
+        if not new_asset_placeholder:
+            new_asset_placeholder = Asset(
+                name="New Asset Placeholder",
+                category_id=categories["Office Supplies"].id,
+                status="Placeholder",
+                quantity=0,
+                cost=0,
+                image_url="",
+                purchase_date=datetime.utcnow()
+            )
+            db.session.add(new_asset_placeholder)
+            db.session.commit()
+            print("New Asset Placeholder created.")
+        else:
+            print("New Asset Placeholder already exists.")
+
+        # ----------------------------
+        # Allocate Assets to Employees
+        # ----------------------------
         canon_printer = Asset.query.filter_by(name="Canon Printer").first()
         bob = User.query.filter_by(name="Bob").first()
         if canon_printer and bob and canon_printer.status != "Allocated":
@@ -212,12 +232,13 @@ def seed_data():
         ]
         for r in request_data:
             user = User.query.filter_by(name=r["user_name"]).first()
-            asset = None
             if r["asset_name"]:
                 asset = Asset.query.filter_by(name=r["asset_name"]).first()
+            else:
+                asset = new_asset_placeholder
             req = Request(
                 user_id=user.id if user else None,
-                asset_id=asset.id if asset else None,
+                asset_id=asset.id,
                 request_type=r["request_type"],
                 urgency=r["urgency"],
                 status=r["status"],
