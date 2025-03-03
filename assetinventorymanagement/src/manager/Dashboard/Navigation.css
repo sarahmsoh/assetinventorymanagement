@@ -62,7 +62,8 @@
     font-size: 24px; /* Larger heading */
     text-transform: capitalize;
     font-weight: 700;
-    text-align: center; /* Center the text */
+    text-align: right; /* Center the text */
+
   }
   
   .card h2 {

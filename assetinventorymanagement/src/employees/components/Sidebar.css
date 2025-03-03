@@ -2,7 +2,7 @@
 .sidebar {
     width: 250px;
     height: 100%;
-    background-color: hsl(228, 6%, 85%);
+    background-color: hwb(230 92% 6%);
     color: #1f32d6;
     position: fixed;
     top: 0;
@@ -46,7 +46,7 @@
   }
 
   /* Logout Button */
-  .logout-btn {
+  /* .logout-btn {
     width: 100%;
     padding: 12px 20px;
     background-color: #ff4d4d;
@@ -60,7 +60,7 @@
 
   .logout-btn:hover {
     background-color: #cc0000;
-  }
+  } */
 
   /* Sidebar Responsiveness */
   @media (max-width: 768px) {
@@ -98,9 +98,9 @@
       font-size: 12px;
       padding: 6px 10px;
     }
-
+/*
     .logout-btn {
       font-size: 12px;
       padding: 8px 12px;
-    }
+    } */
   }
