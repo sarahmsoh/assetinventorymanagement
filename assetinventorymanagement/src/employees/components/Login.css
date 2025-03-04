@@ -1,77 +1,49 @@
-/* Global Styles */
-body {
-  font-family: 'Arial', sans-serif;
-  margin: 0;
-  padding: 0;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: hwb(210 95% 4%); /* Light blue background */
-}
-
-/* Login Container */
-.login {
-  background: #ffffff;
-  padding: 100px;
+.login-container {
+  background-color: #fff;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.603);
-  text-align: center;
-  width: 600px;
+  width: 500px;
+  max-width: 1000px;
+  height: 600px;
+  margin: auto;
+  font-family: Arial, sans-serif;
 }
 
-/* Heading */
-h2 {
-  font-size: 50px;
-  color: rgb(65, 152, 187);
-  font: bold;
-  margin-bottom: 20px;
+.login-container form {
+  padding: 10px;
+  align-items: left;
+  height: 400px;
+  width: 400px;
+  max-width: 800px;
 }
 
-/* Form Group */
-.formGroup {
-  margin-bottom: 50px;
-  text-align: left;
-}
-
-/* Label */
-.label {
-  display: block;
-  font-weight: bold;
-  color: #333333;
+.login-container h2 {
   margin-bottom: 10px;
+  font-size: 30px;
+  padding: 10px;
+  text-align: center;
 }
 
-/* Input Fields */
-.loginInput {
+.login-container input[type="text"],
+.login-container input[type="password"] {
   width: 100%;
   padding: 20px;
+  margin: 10px 0;
   border: 1px solid #ccc;
   border-radius: 5px;
-  font-size: 16px;
 }
 
-/* Button */
-.loginButton {
+.login-container button {
   width: 100%;
-  padding: 12px;
-  background-color: hsl(201, 81%, 96%);
+  padding: 10px;
+  background-color: #4CAF50;
   color: white;
   border: none;
   border-radius: 5px;
-  font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.3s;
 }
 
-.loginButton:hover {
-  background-color: hwb(172 10% 17%);
-}
-
-/* Responsive Design */
-@media (max-width: 480px) {
-  .login {
-    width: 90%;
-    padding: 20px;
-  }
+.login-container button:hover {
+  background-color: #45a049;
 }
