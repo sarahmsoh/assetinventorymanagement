@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { fetchAllocatedAssets } from './api';
-import './api.css';  
+import './EmployeeDashboard.css';
 
 const Assets = () => {
   const [assets, setAssets] = useState([]);
