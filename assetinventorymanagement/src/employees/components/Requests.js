@@ -1,19 +1,26 @@
 import React, { useState, useEffect } from 'react';
-import { fetchRequests } from './api';
-import './api.css';
-
+import axios from 'axios';
 
 const Requests = () => {
   const [requests, setRequests] = useState([]);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const requestsData = await fetchRequests();
-      setRequests(requestsData);
-    };
-
-    fetchData();
+    axios.get('/api/requests')
+      .then((response) => {
+        setRequests(response.data);
+      })
+      .catch((error) => {
+        setError(error.message);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }, []);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error}</p>;
 
   return (
     <div className="api-container">

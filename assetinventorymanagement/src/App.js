@@ -16,13 +16,13 @@ import CompletedRequestsTable from './manager/RequestManagement/CompletedRequest
 
 // Admin Components
 // import AdminLayout from './admin/components/AdminLayout';
-import AdminDashboard from './admin/pages/AdminDashboard';
-import AdminUsers from './admin/pages/AdminUsers';
-import AdminAssets from './admin/pages/AdminAssets';
-import AdminRequests from './admin/pages/AdminRequests';
-import AuditLogs from './admin/pages/AuditLogs';
-import SystemConfig from './admin/pages/SystemConfig';
-import Reports from './admin/pages/Reports';
+// import AdminDashboard from './admin/pages/AdminDashboard';
+// import AdminUsers from './admin/pages/AdminUsers';
+// import AdminAssets from './admin/pages/AdminAssets';
+// import AdminRequests from './admin/pages/AdminRequests';
+// import AuditLogs from './admin/pages/AuditLogs';
+// import SystemConfig from './admin/pages/SystemConfig';
+// import Reports from './admin/pages/Reports';
 
 // Employee Components
 import EmployeeDashboard from './employees/components/EmployeeDashboard';
@@ -37,8 +37,8 @@ import Signup from './employees/components/Signup';
 const PrivateRoute = ({ element, roles }) => {
   const { user, role } = useSelector((state) => state.auth);
   console.log('PrivateRoute - User:', user, 'Role:', role);
-  if (!user) return <Navigate to="/login" />;
-  if (roles && !roles.includes(role)) return <Navigate to="/" />;
+  // if (!user) return <Navigate to="/login" />;
+  // if (roles && !roles.includes(role)) return <Navigate to="/" />;
   return element;
 };
 
@@ -58,16 +58,17 @@ function App() {
   return (
     <Router>
       <Routes>
+      <Route
+          path="/employee/dashboard"
+          element={<PrivateRoute element={<EmployeeDashboard />} roles={['Employee']} />}
+        />
 
         {/* Public Routes */}
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
 
         {/* Employee Routes */}
-        <Route
-          path="/employee/dashboard"
-          element={<PrivateRoute element={<EmployeeDashboard />} roles={['Employee']} />}
-        />
+
         <Route
           path="/requestform"
           element={<PrivateRoute element={<RequestForm />} roles={['Employee']} />}
@@ -84,6 +85,7 @@ function App() {
           path="/repairs"
           element={<PrivateRoute element={<Repairs />} roles={['Employee']} />}
         />
+
 
         {/* Manager Routes */}
         <Route

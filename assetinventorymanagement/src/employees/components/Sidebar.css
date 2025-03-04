@@ -2,7 +2,7 @@
 .sidebar {
     width: 250px;
     height: 100%;
-    background-color: hwb(230 92% 6%);
+    background-color: hwb(240 95% 0%);
     color: #1f32d6;
     position: fixed;
     top: 0;
@@ -32,7 +32,7 @@
 
   /* Sidebar Links */
   .sidebar-link {
-    color: white;
+    color: rgb(100, 133, 240);
     text-decoration: none;
     font-size: 16px;
     padding: 10px 20px;

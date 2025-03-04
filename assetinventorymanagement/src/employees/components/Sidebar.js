@@ -11,9 +11,6 @@ const Sidebar = () => {
       <ul className="sidebar-menu">
         {/* Links to the pages */}
         <li>
-          <Link to="/employee-dashboard" className="sidebar-link">Dashboard</Link>
-        </li>
-        <li>
           <Link to="/requestform" className="sidebar-link">Request Asset</Link>
         </li>
         <li>

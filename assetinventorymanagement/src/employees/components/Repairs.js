@@ -1,18 +1,28 @@
 import React, { useState, useEffect } from 'react';
-import { fetchRepairs } from './api';
-import './api.css';
+import axios from 'axios';
 
 const Repairs = () => {
   const [repairs, setRepairs] = useState([]);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
-      const repairsData = await fetchRepairs();
-      setRepairs(repairsData);
+      try {
+        const response = await axios.get('/api/repairs');
+        setRepairs(response.data);
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
     };
 
     fetchData();
   }, []);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error}</p>;
 
   return (
     <div className="api-container">
