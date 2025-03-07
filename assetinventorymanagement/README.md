@@ -1,70 +1,107 @@
-# Getting Started with Create React App
+Asset Inventory Management System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+The Asset Inventory Management System is a web-based application designed to facilitate the tracking, allocation, and management of organizational assets. This system provides role-based access for employees, managers, and administrators, enabling streamlined asset requests, repairs, and audits.
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+User Authentication: Secure login and signup functionality.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Employee Dashboard: Employees can request assets, submit repair requests, and track asset status.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Manager Dashboard: Manages asset allocations and request approvals.
 
-### `npm test`
+Admin Dashboard: Comprehensive administrative control over users, assets, requests, and audit logs.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Asset Management: Tracks assets and their lifecycle within the organization.
 
-### `npm run build`
+Request Handling: Allows employees to request assets and administrators to approve/reject requests.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Repair Management: Logs repair requests and tracks their progress.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Audit Logs: Records key actions for system accountability.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Reports and System Configuration: Admins can generate reports and configure system settings.
 
-### `npm run eject`
+## Installation
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Prerequisites
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Ensure you have the following installed on your system:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Node.js (latest LTS version recommended)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+npm or yarn (package manager)
 
-## Learn More
+Steps to Install
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Clone the repository:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+git clone https://github.com/your-repository.git
+cd asset-inventory-management
 
-### Code Splitting
+## Install dependencies:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+npm install
+# or
+yarn install
 
-### Analyzing the Bundle Size
+Start the development server:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+npm start
+# or
+yarn start
 
-### Making a Progressive Web App
+Open a browser and navigate to http://localhost:3000 to access the application.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Project Structure
 
-### Advanced Configuration
+asset-inventory-management/
+│── src/
+│   ├── employees/
+│   │   ├── components/
+│   │   │   ├── Navbar.js
+│   │   │   ├── Sidebar.js
+│   │   │   ├── EmployeeDashboard.js
+│   │   │   ├── Requests.js
+│   │   │   ├── RepairForm.js
+│   │   │   ├── Login.js
+│   │   │   ├── Signup.js
+│   │   │   ├── Repairs.js
+│   │   │   ├── RequestForm.js
+│   ├── admin/
+│   │   ├── pages/
+│   │   │   ├── AdminDashboard.js
+│   │   │   ├── AdminUsers.js
+│   │   │   ├── AdminAssets.js
+│   │   │   ├── AdminRequests.js
+│   │   │   ├── AuditLogs.js
+│   │   │   ├── SystemConfig.js
+│   │   │   ├── Reports.js
+│   ├── manager/
+│   │   ├── Dashboard/DashboardLayout.js
+│   │   ├── DataLogic/allocationLogic.js
+│── App.js
+│── package.json
+│── README.md
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Usage
 
-### Deployment
+Login/Register: Users must first register and log in to access their respective dashboards.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Request Assets: Employees can submit asset requests for approval.
 
-### `npm run build` fails to minify
+Manage Assets: Admins and managers can view, allocate, and monitor assets.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Repair Requests: Employees can report issues with assets, and managers/admins can track repairs.
+
+Audit & Reports: Admins can monitor activity logs and generate reports.
+
+## Contributing
+
+We welcome contributions! Please fork the repository, make your changes, and submit a pull request.
+
+## License
+
+This project is licensed under the MIT License.
