@@ -4,3 +4,4 @@
 # SQL
 # Point-Of-Sale
 # Point-Of-Sale
+# Luxdev_Python_basic_assignments
